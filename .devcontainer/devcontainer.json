@@ -1,0 +1,23 @@
+{
+  "name": "Odoo Development",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "odoo18",
+  "workspaceFolder": "/workspace",
+  "remoteEnv": {
+    "PYTHONPATH": "/mnt/extra-addons:${containerEnv:PYTHONPATH}"
+  },
+  "mounts": ["source=${localWorkspaceFolder},target=/workspace,type=bind"],
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.linting.enabled": true,
+    "editor.formatOnSave": true,
+    "python.analysis.extraPaths": [
+      "/usr/lib/python3/dist-packages",
+      "/usr/local/lib/python3.10/site-packages",
+      "/mnt/extra-addons"
+    ]
+  },
+  "extensions": ["ms-python.python", "ms-python.vscode-pylance"],
+  "postCreateCommand": "ln -sf /workspace/addons/* /mnt/extra-addons/ || true",
+  "remoteUser": "root"
+}
