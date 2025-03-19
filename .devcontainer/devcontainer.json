@@ -15,9 +15,32 @@
       "/usr/lib/python3/dist-packages",
       "/usr/local/lib/python3.10/site-packages",
       "/mnt/extra-addons"
-    ]
+    ],
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.python",
+      "editor.formatOnSave": true
+    },
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.formatting.blackArgs": ["--line-length", "88"],
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 2
   },
-  "extensions": ["ms-python.python", "ms-python.vscode-pylance"],
-  "postCreateCommand": "ln -sf /workspace/addons/* /mnt/extra-addons/ || true",
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-azuretools.vscode-docker",
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker"
+  ],
+  "postCreateCommand": "pip install --break-system-packages black && ln -sf /workspace/addons/* /mnt/extra-addons/ || true",
   "remoteUser": "root"
 }

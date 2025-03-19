@@ -1,5 +1,6 @@
 from odoo import fields, models
 
+
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Real Estate Property"
@@ -18,8 +19,9 @@ class EstateProperty(models.Model):
     garden_area = fields.Integer()
     garden_orientation = fields.Selection(
         selection=[
-            ('N', 'North'),
-            ('S', 'South'),
-            ('E', 'East'),
-            ('W', 'West'),
-        ]) 
+            ("N", "North"),
+            ("S", "South"),
+            ("E", "East"),
+            ("W", "West"),
+        ]
+    )

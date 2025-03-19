@@ -1,67 +1,43 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "🔄 Restart Odoo",
-            "type": "shell",
-            "command": "docker-compose restart odoo18",
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "🔍 Check Tables",
-            "type": "shell",
-            "command": "docker-compose",
-            "args": [
-                "exec",
-                "db",
-                "psql",
-                "-U",
-                "odoo",
-                "-d",
-                "odoo_db",
-                "-c",
-                "\\dt"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "📋 Check estate_property Table",
-            "type": "shell",
-            "command": "docker-compose",
-            "args": [
-                "exec",
-                "db",
-                "psql",
-                "-U",
-                "odoo",
-                "-d",
-                "odoo_db",
-                "-c",
-                "\\d estate_property"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "🔄 Restart All Containers",
-            "type": "shell",
-            "command": "docker-compose down && docker-compose up -d",
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
-            "problemMatcher": []
-        }
-    ]
-} 
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🔍 Check All Tables",
+      "type": "shell",
+      "command": "PGPASSWORD=odoo psql -h db -U odoo -d odoo_db -c \"\\dt\"",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📋 Check estate_property Table",
+      "type": "shell",
+      "command": "PGPASSWORD=odoo psql -h db -U odoo -d odoo_db -c \"\\d estate_property\"",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📝 Run Custom SQL Query",
+      "type": "shell",
+      "command": "PGPASSWORD=odoo psql -h db -U odoo -d odoo_db -c \"${input:sqlQuery}\"",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "sqlQuery",
+      "description": "Enter SQL query to run:",
+      "default": "SELECT * FROM ir_module_module LIMIT 5;",
+      "type": "promptString"
+    }
+  ]
+}
