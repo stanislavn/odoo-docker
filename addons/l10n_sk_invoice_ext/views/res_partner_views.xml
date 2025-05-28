@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_l10n_sk_invoice" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.l10n.sk.invoice</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Move company_registry to address section -->
+            <xpath expr="//field[@name='company_registry']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='street']" position="after">
+                <field name="company_registry" string="IČO"/>
+                <field name="vat_local" visibility="country_id.code == 'SK'"/>
+            </xpath>
+            <!-- Rename VAT to IČ DPH for Slovak partners -->
+            <xpath expr="//field[@name='vat']" position="replace">
+                <field name="vat" string="IČ DPH" visibility="country_id.code == 'SK'"/>
+                <field name="vat" string="VAT" visibility="country_id.code != 'SK'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

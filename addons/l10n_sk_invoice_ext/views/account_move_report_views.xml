@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_inherit_l10n_sk_invoice" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[contains(@class, 'page')]" position="inside">
+            <t t-if="o.partner_id.country_id and o.partner_id.country_id.code == 'SK' and o.partner_id.vat_local">
+                <p><strong>DIČ:</strong> <span t-field="o.partner_id.vat_local"/></p>
+            </t>
+            <t t-if="o.partner_id.country_id.code == 'SK'">
+                <p><strong>VS:</strong> <span t-field="o.payment_reference"/></p>
+                <p><strong>ŠS:</strong> <span t-field="o.specific_symbol"/></p>
+            </t>
+        </xpath>
+    </template>
+</odoo> 

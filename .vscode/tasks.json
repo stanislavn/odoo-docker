@@ -30,6 +30,20 @@
         "panel": "new"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "🐳 Full Docker Rebuild",
+      "type": "shell",
+      "command": "docker-compose down && docker-compose build && docker-compose up -d",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
     }
   ],
   "inputs": [
